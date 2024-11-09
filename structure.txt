@@ -1,0 +1,38 @@
+voice-saas-project/
+├── apps/
+│   ├── frontend/               # Next.js frontend application
+│   │   ├── public/             # Public assets
+│   │   ├── src/                # React components, pages, and hooks
+│   │   ├── pages/              # Next.js routing pages
+│   │   ├── package.json        # Frontend dependencies
+│   │   └── next.config.js      # Next.js configuration
+│   │
+│   ├── backend/                # Node.js backend application
+│   │   ├── src/
+│   │   │   ├── routes/         # API route handlers
+│   │   │   ├── controllers/    # Controller functions
+│   │   │   ├── services/       # Redis, file handling, etc.
+│   │   │   ├── models/         # Data models (e.g., for audio metadata)
+│   │   │   └── index.ts        # Main entry point
+│   │   ├── package.json        # Backend dependencies
+│   │   └── tsconfig.json       # TypeScript configuration
+│   │
+│   └── python-llm-service/     # Python microservice for LLM processing
+│       ├── app/                # Main service application code
+│       │   ├── models/         # Model loading and inference
+│       │   ├── api.py          # FastAPI/Flask routes for model inference
+│       │   ├── utils.py        # Helper functions for processing
+│       ├── requirements.txt    # Python dependencies
+│       └── Dockerfile          # Dockerfile to containerize the service
+│
+├── packages/
+│   ├── shared/                 # Shared utilities and types across frontend and backend
+│   │   ├── utils/              # Shared utility functions
+│   │   ├── types/              # TypeScript types/interfaces
+│   │   └── package.json        # Shared dependencies
+│
+├── node_modules/               # Node.js dependencies
+├── package.json                # Root-level dependencies and scripts
+├── tsconfig.json               # Global TypeScript configuration
+├── docker-compose.yml          # Docker Compose for running all services
+└── README.md                   # Project documentation
