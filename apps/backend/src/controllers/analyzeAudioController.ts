@@ -14,30 +14,13 @@ export const analyzeAudio = async (data: any) => {
 };
 */
 
-import { Request, Response } from 'express';
-import axios from 'axios';
-import { setCache, getCache } from '../services/redisClient';
+import redis from '../services/redisClient';
 
-export const analyzeAudio = async (req: Request, res: Response) => {
-    const { audioData } = req.body;
+export const analyzeAudio = async (req, res) => {
+  const { audioId, analysisData } = req.body;
 
-    const cacheKey = `audio:${audioData.id}`;
-    const cachedData = await getCache(cacheKey);
+  // Cache the result in Redis
+  await redis.set(`audio:${audioId}`, JSON.stringify(analysisData), { ex: 3600 }); // Cache for 1 hour
 
-    if (cachedData) {
-        return res.status(200).json(JSON.parse(cachedData));
-    }
-
-    try {
-        const response = await axios.post('http://localhost:5000/analyze', { audioData });
-        const result = response.data;
-
-        // Cache the result with a unique key
-        await setCache(cacheKey, JSON.stringify(result));
-
-        res.status(200).json(result);
-    } catch (error) {
-        console.error('Error analyzing audio:', error);
-        res.status(500).json({ error: 'Failed to analyze audio' });
-    }
+  res.json({ message: 'Audio analysis completed and cached', data: analysisData });
 };
