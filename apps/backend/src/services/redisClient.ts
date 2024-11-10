@@ -1,24 +1,9 @@
-import { createClient } from 'redis';
+import { Redis } from '@upstash/redis';
 
-const redisClient = createClient({
-    url: 'redis://localhost:6379',
-});
-
-redisClient.on('error', (err) => console.error('Redis Client Error', err));
-
-// Connect to Redis
-async function connectRedis() {
-    if (!redisClient.isOpen) await redisClient.connect();
+export function connectToRedis() {
+    const redis = new Redis({
+        url: process.env.UPSTASH_REDIS_URL,
+        token: process.env.UPSTASH_REDIS_TOKEN,
+    });
+    return redis;
 }
-
-// Set cache data with an expiration time
-async function setCache(key: string, value: string, expiration = 600) {
-    await redisClient.set(key, value, { EX: expiration });
-}
-
-// Retrieve data from Redis cache
-async function getCache(key: string): Promise<string | null> {
-    return await redisClient.get(key);
-}
-
-export { redisClient, connectRedis, setCache, getCache };
