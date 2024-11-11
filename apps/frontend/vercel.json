@@ -1,0 +1,7 @@
+{
+    "name": "frontend",
+    "buildCommand": "npm run build",
+    "outputDirectory": "out",
+    "framework": "@vercel/next"
+  }
+  
