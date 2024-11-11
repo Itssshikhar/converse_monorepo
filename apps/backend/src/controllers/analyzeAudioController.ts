@@ -14,9 +14,10 @@ export const analyzeAudio = async (data: any) => {
 };
 */
 
+import { Request, Response } from 'express';
 import redis from '../services/redisClient';
 
-export const analyzeAudio = async (req, res) => {
+export const analyzeAudio = async (req: Request, res: Response) => {
   const { audioId, analysisData } = req.body;
 
   // Cache the result in Redis

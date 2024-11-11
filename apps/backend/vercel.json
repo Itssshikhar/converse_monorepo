@@ -1,11 +1,13 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "src/index.ts", "use": "@vercel/node" }
-    ],
-    "env": {
-      "UPSTASH_REDIS_REST_URL": "@upstash_redis_rest_url",
-      "UPSTASH_REDIS_REST_TOKEN": "@upstash_redis_rest_token"
-    }
+  "version": 2,
+  "builds": [
+    { "src": "apps/backend/src/index.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "apps/backend/src/index.ts" }
+  ],
+  "env": {
+    "UPSTASH_REDIS_REST_URL": "@upstash_redis_rest_url",
+    "UPSTASH_REDIS_REST_TOKEN": "@upstash_redis_rest_token"
   }
-  
+}
