@@ -1,12 +1,25 @@
 {
-    "builds": [
+    "projects": [
       {
-        "src": "apps/frontend/next.config.ts",
-        "use": "@vercel/next"
+        "name": "frontend",
+        "src": "apps/frontend",
+        "buildCommand": "npm run build",
+        "outputDirectory": "out",
+        "framework": "@vercel/next"
       },
       {
-        "src": "apps/backend/src/index.ts",
-        "use": "@vercel/node"
+        "name": "backend",
+        "src": "apps/backend",
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist",
+        "framework": "node"
+      },
+      {
+        "name": "python-llm-service",
+        "src": "apps/python-llm-service",
+        "buildCommand": "echo 'Python service deployment'",
+        "outputDirectory": ".",
+        "framework": "python"
       }
     ]
   }
