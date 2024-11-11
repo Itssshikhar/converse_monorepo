@@ -1,11 +1,11 @@
 {
-    "projects": [
+    "builds": [
       {
-        "src": "apps/frontend",
+        "src": "apps/frontend/next.config.ts",
         "use": "@vercel/next"
       },
       {
-        "src": "apps/backend",
+        "src": "apps/backend/src/index.ts",
         "use": "@vercel/node"
       }
     ]
